@@ -68,10 +68,10 @@ body {
 }
 
 .navigation a:hover {
-    background-color: #4CAF50;
+    background-color: #f58c04;
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 4px 8px rgba(243, 113, 6, 0.3);
 }
 
 /* Header/Hero Section */
@@ -234,8 +234,7 @@ body {
     font-size: 2.5rem;
     margin-bottom: 40px;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
+    }
 
 .action-buttons {
     display: flex;
@@ -261,14 +260,7 @@ body {
 .action-btn:hover {
     background: white;
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
-
-.search-btn:hover { border-left: 5px solid #2196F3; }
-.borrow-btn:hover { border-left: 5px solid #4CAF50; }
-.return-btn:hover { border-left: 5px solid #FF9800; }
-.register-btn:hover { border-left: 5px solid #9C27B0; }
-
 /* Footer */
 .footer {
     background: rgba(0, 0, 0, 0.8);
