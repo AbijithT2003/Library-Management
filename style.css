@@ -1,0 +1,14 @@
+body{
+    font-family: Arial, sans-serif; /* Set a default font */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-color: #f4f4f4; /* Light gray background */
+}
+
+#header{
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px; /* Some padding */
+    text-align: center; /* Centered text */
+    font-size: 24px; /* Larger font size */
+}
