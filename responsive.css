@@ -1,0 +1,109 @@
+
+/* Mobile Styles */
+@media (max-width: 480px) {
+    /* Navigation */
+    .navigation {
+        padding: 15px 10px;
+    }
+    
+    .navigation ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+    }
+    
+    .navigation li {
+        width: 100%;
+    }
+    
+    .navigation a {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        margin: 2px 0;
+    }
+    
+    /* Header */
+    .header {
+        padding: 40px 15px;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .description {
+        font-size: 0.9rem;
+    }
+    
+    /* Login Section */
+    .login-section {
+        padding: 20px 15px;
+        margin-top: 30px;
+    }
+    
+    .login-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    .login-btn {
+        font-size: 14px;
+        padding: 12px 20px;
+        min-width: auto;
+    }
+    
+    /* Container */
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Features */
+    .features {
+        padding: 40px 0;
+        margin: 20px 0;
+    }
+    
+    .features h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .feature-grid {
+        padding: 0 15px;
+    }
+    
+    .feature-card {
+        padding: 20px;
+    }
+    
+    .feature-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* Quick Actions */
+    .quick-actions {
+        padding: 40px 0;
+    }
+    
+    .quick-actions h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .action-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+        width: 95%;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 20px 0;
+        font-size: 14px;
+    }
+}
