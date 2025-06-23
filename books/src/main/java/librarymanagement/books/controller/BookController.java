@@ -1,8 +1,8 @@
 // File: src/main/java/librarymanagement/controller/BookController.java
-package librarymanagement.controller;
+package librarymanagement.books.controller;
 
-import librarymanagement.model.Book;
-import librarymanagement.repository.BookRepository;
+import librarymanagement.books.model.Book;
+import librarymanagement.books.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,4 +56,3 @@ public class BookController {
         bookRepository.deleteById(id);
     }
 }
-

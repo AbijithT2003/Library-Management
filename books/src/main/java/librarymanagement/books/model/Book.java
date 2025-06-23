@@ -1,9 +1,11 @@
-package librarymanagement.model;
+package librarymanagement.books.model;
+// File: src/main/java/librarymanagement/books/model/Book.java
+// Library Management System - Book Entity
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "books")
+@Table(name = "book")
 public class Book {
 
     @Id
@@ -64,3 +66,4 @@ public class Book {
         this.publishedYear = publishedYear;
     }
 }
+
