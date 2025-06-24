@@ -5,6 +5,7 @@ import librarymanagement.books.model.Book;
 import librarymanagement.books.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -42,11 +43,10 @@ public class BookController {
 
     @Operation(summary = "Get a book by ID", description = "Retrieves a book by its ID")
     @GetMapping("/{id}")
-    public ResponseEntity<?> getBookById(@PathVariable Long id) {
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         return bookRepository.findById(id)
             .map(book -> ResponseEntity.ok(book))
-            .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
-            .body("❌ Book not found with ID: " + id));
+            .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 
