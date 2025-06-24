@@ -6,6 +6,9 @@ import librarymanagement.books.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,10 +20,11 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
-    // Create a new book
+    // Create a new book with validation
     @PostMapping
-    public Book createBook(@RequestBody Book book) {
-        return bookRepository.save(book);
+    public ResponseEntity<String> createBook(@Valid @RequestBody Book book) {
+        bookRepository.save(book);
+        return ResponseEntity.ok("✅ Book added successfully!");
     }
 
     // Read all books

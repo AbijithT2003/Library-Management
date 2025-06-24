@@ -3,6 +3,7 @@ package librarymanagement.books.model;
 // Library Management System - Book Entity
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "book")
@@ -12,8 +13,13 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Title is required")
     private String title;
+
+    @NotBlank(message = "Author is required")
     private String author;
+
+    @Size(max = 255, message = "Genre cannot be more than 255 characters")
     private String genre;
 
     @Column(name = "published_year")
