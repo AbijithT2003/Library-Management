@@ -1,4 +1,3 @@
-// File: GlobalExceptionHandler.java
 package librarymanagement.books.exception;
 
 import jakarta.validation.ConstraintViolationException;
