@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Book Management", description = "Operations related to book management in the library")
 @RestController
+@Validated 
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
 @Slf4j
@@ -98,7 +99,7 @@ public class BookController {
             WebRequest request) {
 
         ApiResponse<Book> response = bookUpdateService.updateBook(id, updateRequest);
-        response.setPath(request.getContextPath() + "/api/v1/books/" + id);
+        response.setPath(request.getContextPath() + "/api/books/" + id);
         return response.isSuccess()
                 ? ResponseEntity.ok(response)
                 : ResponseEntity.badRequest().body(response);
@@ -109,7 +110,7 @@ public class BookController {
     @Operation(summary="Delete book",description="Deletes a book from the library")
     public ResponseEntity<ApiResponse<Void>> deleteBook(@PathVariable @Min(1) Long id, WebRequest request) {
         ApiResponse<Void> response = bookUpdateService.deleteBook(id);
-        response.setPath(request.getContextPath() + "/api/v1/books/" + id);
+        response.setPath(request.getContextPath() + "/api/books/" + id);
         return response.isSuccess()
                 ? ResponseEntity.ok(response)
                 : ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
@@ -131,7 +132,7 @@ public class BookController {
                 updatedCount, bulkRequest.getBookIds().size());
 
         ApiResponse<String> response = ApiResponse.success(message, message);
-        response.setPath(request.getContextPath() + "/api/v1/books/bulk");
+        response.setPath(request.getContextPath() + "/api/books/bulk");
         response.setStatusCode(HttpStatus.OK.value());
 
         return ResponseEntity.ok(response);
@@ -142,7 +143,7 @@ public class BookController {
     @Operation(summary = "Get book statistics", description = "Retrieves various statistics about the book collection")
     public ResponseEntity<ApiResponse<BookStatisticsResponse>> getBookStatistics(WebRequest request) {
         ApiResponse<BookStatisticsResponse> response = bookQueryService.getBookStatistics();
-        response.setPath(request.getContextPath() + "/api/v1/books/statistics");
+        response.setPath(request.getContextPath() + "/api/books/statistics");
         return response.isSuccess()
                 ? ResponseEntity.ok(response)
                 : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);

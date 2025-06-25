@@ -1,4 +1,4 @@
-package librarymanagement.books.APIresponse;
+package librarymanagement.books.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

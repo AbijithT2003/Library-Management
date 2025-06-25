@@ -1,4 +1,4 @@
-package librarymanagement.books.APIresponse;
+package librarymanagement.books.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

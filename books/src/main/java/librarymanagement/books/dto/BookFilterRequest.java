@@ -1,4 +1,4 @@
-package librarymanagement.books.APIresponse;
+package librarymanagement.books.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,8 +18,6 @@ public class BookFilterRequest {
     private String genre;
     private Integer yearFrom;
     private Integer yearTo;
-    private java.math.BigDecimal minPrice;
-    private java.math.BigDecimal maxPrice;
     private Boolean availableOnly;
     private String search;
     
