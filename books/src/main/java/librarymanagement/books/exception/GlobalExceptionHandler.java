@@ -1,5 +1,5 @@
 // File: GlobalExceptionHandler.java
-package librarymanagement.books;
+package librarymanagement.books.exception;
 
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
