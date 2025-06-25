@@ -1,13 +1,13 @@
-package librarymanagement.books.service;
+package librarymanagement.books.servicelayer;
 
 import librarymanagement.books.model.Book;
 import librarymanagement.books.repository.BookRepository;
-import librarymanagement.books.util.BookDefaultsHelper;
-import librarymanagement.common.response.ApiResponse;
+import librarymanagement.books.servicelayer.BookDefaultsHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import librarymanagement.books.dto.ApiResponse;
 
 @Service
 @RequiredArgsConstructor

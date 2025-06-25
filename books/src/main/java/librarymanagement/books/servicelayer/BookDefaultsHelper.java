@@ -1,4 +1,4 @@
-package librarymanagement.books.util;
+package librarymanagement.books.servicelayer;
 
 import librarymanagement.books.model.Book;
 import org.springframework.stereotype.Component;

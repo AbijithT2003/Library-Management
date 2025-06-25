@@ -1,4 +1,4 @@
-package librarymanagement.books.util;
+package librarymanagement.books.servicelayer;
 
 import librarymanagement.books.dto.BookUpdateRequest;
 import librarymanagement.books.model.Book;
@@ -14,9 +14,6 @@ public class BookMapper {
             book.setGenre(defaultIfBlank(req.getGenre(), "Unspecified"));
         }
         if (req.hasPublishedYear()) book.setPublishedYear(req.getPublishedYear());
-        if (req.hasIsbn()) book.setIsbn(req.getIsbn());
-        if (req.hasDescription()) book.setDescription(req.getDescription());
-        if (req.hasPrice()) book.setPrice(req.getPrice());
         if (req.hasAvailableCopies()) {
             Integer copies = req.getAvailableCopies();
             book.setAvailableCopies(copies != null && copies >= 0 ? copies : 0);

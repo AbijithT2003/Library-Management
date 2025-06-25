@@ -11,9 +11,6 @@ import org.springframework.data.domain.Pageable;
 import java.math.BigDecimal;
 import java.util.List;
 
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 

@@ -3,6 +3,18 @@ package librarymanagement.books.controller;
 
 import librarymanagement.books.model.Book;
 import librarymanagement.books.repository.BookRepository;
+import librarymanagement.books.servicelayer.BookCreateService;
+import librarymanagement.books.servicelayer.BookUpdateService;
+import librarymanagement.books.servicelayer.BookQueryService;
+import librarymanagement.books.dto.ApiResponse;
+import librarymanagement.books.dto.PagedResponse;
+import librarymanagement.books.dto.BookFilterRequest;
+import librarymanagement.books.dto.BookUpdateRequest;
+import librarymanagement.books.dto.BookStatisticsResponse;
+import jakarta.validation.constraints.Min;
+import org.springframework.web.context.request.WebRequest;
+import librarymanagement.books.controller.BookController;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -12,6 +24,8 @@ import org.springframework.http.ResponseEntity;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,7 +34,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Book Management", description = "Operations related to book management in the library")
 @RestController
-@Validated 
+@Valid
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
 @Slf4j
@@ -117,26 +131,7 @@ public class BookController {
     }
 
      // ========== Bulk Update ==========
-    @PatchMapping("/bulk")
-    @Operation(summary = "Bulk update books", description = "Updates multiple books in a single operation")
-    public ResponseEntity<ApiResponse<String>> bulkUpdateBooks(
-            @RequestBody BulkUpdateRequest bulkRequest, WebRequest request) {
-
-        int updatedCount = 0;
-        for (Long bookId : bulkRequest.getBookIds()) {
-            ApiResponse<Book> updateResponse = bookUpdateService.updateBook(bookId, bulkRequest.getUpdateRequest());
-            if (updateResponse.isSuccess()) updatedCount++;
-        }
-
-        String message = String.format("Successfully updated %d out of %d books",
-                updatedCount, bulkRequest.getBookIds().size());
-
-        ApiResponse<String> response = ApiResponse.success(message, message);
-        response.setPath(request.getContextPath() + "/api/books/bulk");
-        response.setStatusCode(HttpStatus.OK.value());
-
-        return ResponseEntity.ok(response);
-    }
+  
 
     // ========== Statistics ==========
     @GetMapping("/statistics")
