@@ -61,13 +61,7 @@ public class BookQueryService {
                             .build())
                     .build();
 
-            Map<String, Object> metadata = new HashMap<>();
-            metadata.put("totalElements", bookPage.getTotalElements());
-            metadata.put("totalPages", bookPage.getTotalPages());
-            metadata.put("currentPage", bookPage.getNumber());
-            metadata.put("pageSize", bookPage.getSize());
-
-            return ApiResponse.success(pagedResponse, "Books retrieved successfully", metadata);
+            return ApiResponse.success(pagedResponse, "Books retrieved successfully");
         } catch (Exception e) {
             log.error("Error retrieving filtered books: {}", e.getMessage());
             return ApiResponse.error("Failed to retrieve books: " + e.getMessage());
