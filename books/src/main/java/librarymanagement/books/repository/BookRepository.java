@@ -13,6 +13,10 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
+    
+    long countByAvailableCopiesGreaterThan(int count);
+    long countByAvailableCopiesEquals(int count);
+
 
     // Custom query methods for filtering
     List<Book> findByTitleContainingIgnoreCase(String title);
@@ -24,8 +28,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByPublishedYear(Integer year);
     
     List<Book> findByPublishedYearBetween(Integer startYear, Integer endYear);
-    
-    List<Book> findByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice);
     
     List<Book> findByAvailableCopiesGreaterThan(Integer copies);
 

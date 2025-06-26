@@ -5,7 +5,7 @@ import librarymanagement.books.model.Book;
 import librarymanagement.books.repository.BookRepository;
 import librarymanagement.books.servicelayer.BookMapper;
 import librarymanagement.books.dto.ApiResponse;
-import librarymanagement.books.exception;
+import librarymanagement.books.exception.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -36,5 +36,20 @@ public class BookUpdateService {
             log.error("Failed to update book: {}", e.getMessage());
             return ApiResponse.error("Failed to update book: " + e.getMessage());
         }
+    }
+
+    public ApiResponse<Void> deleteBook(Long id) {
+    return bookRepository.findById(id)
+            .map(book -> {
+                bookRepository.delete(book);
+                return ApiResponse.success((Void) null, "Book deleted successfully");
+            })
+            .orElse(ApiResponse.error("Book not found"));
+}
+
+    public ApiResponse<Book> getBookById(Long id) {
+        return bookRepository.findById(id)
+                .map(book -> ApiResponse.success(book, "Book retrieved successfully"))
+                .orElse(ApiResponse.error("Book not found with ID: " + id));
     }
 }

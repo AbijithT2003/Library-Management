@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.Map;
 
+import librarymanagement.books.dto.BookStatisticsResponse;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -100,4 +102,23 @@ public class BookQueryService {
 
         return Sort.by(direction, sortBy);
     }
+    public ApiResponse<Book> getBookById(Long id) {
+    return bookRepository.findById(id)
+            .map(book -> ApiResponse.success(book, "Book found"))
+            .orElse(ApiResponse.error("Book with ID " + id + " not found"));
+}
+   public ApiResponse<BookStatisticsResponse> getBookStatistics() {
+    long totalBooks = bookRepository.count();
+    long availableBooks = bookRepository.countByAvailableCopiesGreaterThan(0);
+    long outOfStockBooks = bookRepository.countByAvailableCopiesEquals(0);
+
+    BookStatisticsResponse stats = BookStatisticsResponse.builder()
+            .totalBooks(totalBooks)
+            .availableBooks(availableBooks)
+            .outOfStockBooks(outOfStockBooks)
+            .build();
+
+    return ApiResponse.success(stats, "Book statistics retrieved");
+}
+ 
 }

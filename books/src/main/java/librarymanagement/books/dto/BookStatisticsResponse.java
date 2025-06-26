@@ -16,6 +16,8 @@ public class BookStatisticsResponse {
     private long totalBooks;
     private long availableBooks;
     private long uniqueAuthors;
+    private long outOfStockBooks;
+    private long totalGenres;
     private List<GenreCount> genreStatistics;
     
     @Data

@@ -15,7 +15,6 @@ import jakarta.validation.constraints.Min;
 import org.springframework.web.context.request.WebRequest;
 import librarymanagement.books.controller.BookController;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
@@ -81,7 +80,7 @@ public class BookController {
                 .page(page).size(size).sortBy(sortBy).sortDirection(sortDirection)
                 .build();
 
-        ApiResponse<PagedResponse<Book>> response = bookQueryService.getAllBooks(filterRequest);
+        ApiResponse<PagedResponse<Book>> response = bookQueryService.getFilteredBooks(filterRequest);
         response.setPath(request.getContextPath() + "/api/books");
 
         return response.isSuccess()
