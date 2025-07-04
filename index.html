@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AT Library Management System</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="responsive.css">
 </head>
 <body>
-    <!-- Navigation should be at the top -->
+    <!-- Navigation -->
     <nav class="navigation">
         <div class="logo">
             <img src="logo.png" alt="AT Library Logo">
@@ -17,6 +16,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#resources">Resources</a></li>
             <li><a href="#actions">Quick Actions</a></li>
+            <li><a href="#books">Books</a></li>
             <li><a href="#login">Login</a></li>
         </ul>
     </nav>
@@ -25,9 +25,8 @@
     <header class="header" id="home">
         <div class="header-content">
             <h1>AT Library Management System</h1>
-            <p class="subtitle">Efficiently manage your library operations with our comprehensive system</p>
-            <p class="description">Welcome to the AT Library Management System. This system is designed to help you manage library operations efficiently including book cataloging, member management, and circulation tracking.</p>
-            
+            <p class="description">Welcome to the AT Library Management System. This system is designed to help you manage library operations efficiently.</p>
+
             <!-- Quick Login Section -->
             <div class="login-section" id="login">
                 <h3>Access</h3>
@@ -47,57 +46,188 @@
 
     <!-- Main Content Area -->
     <main class="main-content">
-        <!-- Features Section -->
-        <section class="features" id="resources">
+        <!-- Resources Section -->  
+         <section class="resources" id="resources">
             <div class="container">
-                <h2>System Features</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h3>📖 Book Management</h3>
-                        <p>Comprehensive catalog management with advanced search and filtering capabilities.</p>
+                <h2>Resources</h2>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h3>Library Catalog</h3>
+                        <p>Browse our extensive collection of books, journals, and digital resources.</p>
+                        <button class="resource-btn" onclick="showBooksSection()">View Catalog</button>
                     </div>
-                    <div class="feature-card">
-                        <h3>👥 Member Management</h3>
-                        <p>Complete member registration, profile management, and activity tracking.</p>
+                    <div class="resource-item">
+                        <h3>Help & Support</h3>
+                        <p>Need assistance? Contact our support team for help with any issues.</p>
+                        <button class="resource-btn" onclick="showSupport()">Contact Support</button>
                     </div>
-                    <div class="feature-card">
-                        <h3>🔄 Circulation Control</h3>
-                        <p>Streamlined borrowing and returning process with automated notifications.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>📊 Reports & Analytics</h3>
-                        <p>Detailed reports on library usage, popular books, and member activities.</p>
+                    <div class="resource-item">
+                        <h3>FAQs</h3>
+                        <p>Find answers to common questions about library services and policies.</p>
+                        <button class="resource-btn" onclick="showFAQs()">View FAQs</button>
                     </div>
                 </div>
             </div>
-        </section>
 
         <!-- Quick Actions Section -->
         <section class="quick-actions" id="actions">
             <div class="container">
                 <h2>Quick Actions</h2>
                 <div class="action-buttons">
-                    <a href="#search" class="action-btn search-btn" id="search">
+                    <button class="action-btn search-btn" onclick="showBooksSection()">
                         <span class="icon">🔍</span>
                         Search Books
-                    </a>
-                    <a href="#borrow" class="action-btn borrow-btn" id="borrow">
-                        <span class="icon">📚</span>
-                        Borrow Book
-                    </a>
-                    <a href="#return" class="action-btn return-btn" id="return">
-                        <span class="icon">↩️</span>
-                        Return Book
-                    </a>
-                    <a href="#register" class="action-btn register-btn" id="register">
-                        <span class="icon">✍️</span>
-                        New Member
-                    </a>
+                    </button>
+                    <button class="action-btn add-btn" onclick="showAddBookModal()">
+                        <span class="icon">➕</span>
+                        Add Book
+                    </button>
+                    <button class="action-btn stats-btn" onclick="showStatistics()">
+                        <span class="icon">📊</span>
+                        View Statistics
+                    </button>
+                    <button class="action-btn refresh-btn" onclick="refreshBooks()">
+                        <span class="icon">🔄</span>
+                        Refresh Data
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Books Management Section -->
+        <section class="books-section" id="books">
+            <div class="container">
+                <h2>Find what you need</h2>
+
+                <!-- Search and Filter Controls -->
+                <div class="search-controls">
+                    <div class="filter-row">
+                        <input type="text" id="titleFilter" placeholder="Title">
+                        <input type="text" id="authorFilter" placeholder="Author">
+                        <input type="text" id="genreFilter" placeholder="Genre">
+                        <input type="number" id="yearFromFilter" placeholder="Year From">
+                        <input type="number" id="yearToFilter" placeholder="Year To">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="availableOnlyFilter">
+                            Available Only
+                        </label>
+                    </div>
+                    <div class="search-row">
+                        <button class="search-btn" onclick="searchBooks()">Search</button>
+                        <button class="clear-btn" onclick="clearSearch()">Clear</button>
+                    </div>
+                </div>
+
+                <!-- Books Grid -->
+                <div class="books-grid" id="booksGrid">
+                    <!-- Books will be populated here -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination">
+                    <!-- Pagination controls will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="statistics-section" id="statistics" style="display: none;">
+            <div class="container">
+                <h2>Library Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Books</h3>
+                        <span class="stat-number" id="totalBooks">-</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Available Books</h3>
+                        <span class="stat-number" id="availableBooks">-</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Out of Stock</h3>
+                        <span class="stat-number" id="outOfStockBooks">-</span>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Add Book Modal -->
+    <div class="modal" id="addBookModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddBookModal()">&times;</span>
+            <h2>Add New Book</h2>
+            <form id="addBookForm">
+                <div class="form-group">
+                    <label for="bookTitle">Title *</label>
+                    <input type="text" id="bookTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookAuthor">Author *</label>
+                    <input type="text" id="bookAuthor" name="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookGenre">Genre</label>
+                    <input type="text" id="bookGenre" name="genre">
+                </div>
+                <div class="form-group">
+                    <label for="bookYear">Published Year</label>
+                    <input type="number" id="bookYear" name="publishedYear" min="1000" max="2025">
+                </div>
+                <div class="form-group">
+                    <label for="bookPrice">Price</label>
+                    <input type="number" id="bookPrice" name="price" step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="bookCopies">Available Copies</label>
+                    <input type="number" id="bookCopies" name="availableCopies" min="0" value="1">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Add Book</button>
+                    <button type="button" class="cancel-btn" onclick="closeAddBookModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Book Modal -->
+    <div class="modal" id="editBookModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditBookModal()">&times;</span>
+            <h2>Edit Book</h2>
+            <form id="editBookForm">
+                <input type="hidden" id="editBookId">
+                <div class="form-group">
+                    <label for="editBookTitle">Title *</label>
+                    <input type="text" id="editBookTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="editBookAuthor">Author *</label>
+                    <input type="text" id="editBookAuthor" name="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="editBookGenre">Genre</label>
+                    <input type="text" id="editBookGenre" name="genre">
+                </div>
+                <div class="form-group">
+                    <label for="editBookYear">Published Year</label>
+                    <input type="number" id="editBookYear" name="publishedYear" min="1000" max="2025">
+                </div>
+                <div class="form-group">
+                    <label for="editBookPrice">Price</label>
+                    <input type="number" id="editBookPrice" name="price" step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="editBookCopies">Available Copies</label>
+                    <input type="number" id="editBookCopies" name="availableCopies" min="0">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Update Book</button>
+                    <button type="button" class="cancel-btn" onclick="closeEditBookModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -106,6 +236,6 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->     
+    <script src="script.js"></script>
 </body>
 </html>
