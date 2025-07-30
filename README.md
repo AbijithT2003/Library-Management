@@ -1,4 +1,4 @@
-# 📚 Library Management System - Books Service
+# 📚 Library Management System (not deployed)
 
 A robust Spring Boot REST API for managing books in a library system. This microservice provides comprehensive book management functionality with advanced filtering, pagination, and statistics capabilities.
 
@@ -146,31 +146,31 @@ All API responses follow a consistent structure:
 }
 ```
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 src/main/java/librarymanagement/books/
-├── BooksApplication.java                 # Main application class
+├── BooksApplication.java                 
 ├── controller/
-│   └── BookController.java              # REST API endpoints
+│   └── BookController.java              
 ├── dto/
-│   ├── ApiResponse.java                 # Generic API response wrapper
-│   ├── BookFilterRequest.java           # Filter request DTO
-│   ├── BookStatisticsResponse.java      # Statistics response DTO
-│   ├── BookUpdateRequest.java           # Update request DTO
-│   └── PagedResponse.java               # Pagination wrapper
+│   ├── ApiResponse.java                 
+│   ├── BookFilterRequest.java           
+│   ├── BookStatisticsResponse.java      
+│   ├── BookUpdateRequest.java           
+│   └── PagedResponse.java               
 ├── exception/
-│   └── GlobalExceptionHandler.java      # Global error handling
+│   └── GlobalExceptionHandler.java      
 ├── model/
-│   └── Book.java                        # Book entity
+│   └── Book.java                        
 ├── repository/
-│   └── BookRepository.java              # Data access layer
+│   └── BookRepository.java              
 └── servicelayer/
-    ├── BookCreateService.java           # Book creation logic
-    ├── BookDefaultsHelper.java          # Default values helper
-    ├── BookMapper.java                  # DTO to entity mapping
-    ├── BookQueryService.java            # Query operations
-    └── BookUpdateService.java           # Update operations
+    ├── BookCreateService.java           
+    ├── BookDefaultsHelper.java          
+    ├── BookMapper.java                  
+    ├── BookQueryService.java            
+    └── BookUpdateService.java           
 ```
 
 ## 📋 Book Entity Schema
@@ -186,19 +186,8 @@ src/main/java/librarymanagement/books/
 | `createdAt` | LocalDateTime | Auto-generated | Creation timestamp |
 | `updatedAt` | LocalDateTime | Auto-updated | Last update timestamp |
 
-## 🧪 Testing
 
-Run the test suite:
-
-```bash
-# Run all tests
-mvn test
-
-# Run with coverage
-mvn test jacoco:report
-```
-
-## 🔧 Configuration
+##  Configuration
 
 ### Application Properties
 
@@ -220,62 +209,11 @@ springdoc.swagger-ui.path=/swagger-ui.html
 # Logging
 logging.level.librarymanagement.books=DEBUG
 ```
-
-## 🚀 Deployment
-
-### Docker Deployment
-
-1. **Create Dockerfile**
-   ```dockerfile
-   FROM openjdk:17-jdk-slim
-   COPY target/books-0.0.1-SNAPSHOT.jar app.jar
-   EXPOSE 8080
-   ENTRYPOINT ["java", "-jar", "/app.jar"]
-   ```
-
-2. **Build and run**
-   ```bash
-   mvn clean package
-   docker build -t library-books-service .
-   docker run -p 8080:8080 library-books-service
-   ```
-
-### Production Considerations
-
-- Use external database (MySQL/PostgreSQL)
-- Configure proper logging levels
-- Set up health checks and monitoring
-- Enable security (Spring Security)
-- Configure CORS for frontend integration
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 API Documentation
+##  API Documentation
 
 Once the application is running, you can explore the full API documentation at:
 - **Swagger UI**: `http://localhost:8080/swagger-ui.html`
 - **OpenAPI JSON**: `http://localhost:8080/api-docs`
-
-## 🐛 Known Issues & Future Enhancements
-
-### Current Limitations
-- No authentication/authorization
-- Basic error handling for some edge cases
-- Limited bulk operations
-
-### Planned Features
-- [ ] Bulk book operations
-- [ ] Advanced statistics and reporting
-- [ ] Integration with external book APIs
-- [ ] Caching for improved performance
-- [ ] Full-text search capabilities
-
 
 ## 📜 License
 
